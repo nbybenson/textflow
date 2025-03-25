@@ -8,27 +8,36 @@ import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
 import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
-import { EditorState, SerializedEditorState } from "lexical";
-import { useMemo, useState } from "react";
+import { EditorState } from "lexical";
+import { useEffect, useMemo, useState } from "react";
+import TextActionButtons from "../pages/text-action-buttons";
 
 const theme = {
     
 }
 
+
+function EditorContentLoaderPlugin({text} : {text : string}) {
+    const [editor] = useLexicalComposerContext();
+    useEffect(() => {
+        editor.setEditorState(editor.parseEditorState(text));
+    }, []);
+
+    return <></>
+}
+
+
 function onError(error: any) {
     console.error(error);
 }
 
-// function OnChangePlugin({ onChange }: any) {
-//     const [editor] = useLexicalComposerContext();
-//     useEffect(() => {
-//         return editor.registerUpdateListener(({ editorState }) => {
-//             onChange(editorState);
-//         });
-//     }, [editor, onChange]);
-// }
 
-function Editor() {
+interface EditorProps {
+    initialEditorState: string;
+    onChange: (editorState: EditorState) => void;
+}
+
+function Editor(props: EditorProps) {
     const initialConfig = {
         namespace: "Editor",
         onError,
@@ -36,35 +45,37 @@ function Editor() {
 
     const placeholder = useMemo(() => {
         return (
-            <div className="absolute top-2 left-2">
+            <div className="absolute top-0 left-8 text-neutral-800 opacity-50">
                 <p>Once upon a time, ...</p>
             </div>
         )
     }, [])
 
-    const [editorState, setEditorState] = useState<string>();
-    const onChange = (editorState: EditorState) => {
-        const editorStateJSON = editorState.toJSON();
-        setEditorState(JSON.stringify(editorStateJSON));
-    }
 
     return (
-        <LexicalComposer initialConfig={initialConfig}>
-            <RichTextPlugin
-                contentEditable={
-                    <ContentEditable
-                        aria-placeholder="abc..."
-                        placeholder={placeholder}
-                        className="p-2 rounded-lg"
-                    />
-                }
-                ErrorBoundary={LexicalErrorBoundary}
-            />
-            <HistoryPlugin />
-            <AutoFocusPlugin />
-            <OnChangePlugin onChange={onChange} />
-        </LexicalComposer>
+        <div className="relative">
+            <LexicalComposer initialConfig={initialConfig}>
+                <RichTextPlugin
+                    contentEditable={
+                        <ContentEditable
+                            aria-placeholder="abc..."
+                            placeholder={placeholder}
+                            className="px-8 rounded-sm h-full outline-0"
+                        />
+                    }
+                    ErrorBoundary={LexicalErrorBoundary}
+                />
+                <EditorContentLoaderPlugin text={props.initialEditorState} />
+                <AutoFocusPlugin />
+                <HistoryPlugin />
+                <OnChangePlugin onChange={props.onChange} />
+            </LexicalComposer>
+        </div>
     )
 }
 
 export default Editor;
+
+function $createParapgraphNode() {
+    throw new Error("Function not implemented.");
+}
