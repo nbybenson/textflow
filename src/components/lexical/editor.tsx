@@ -10,10 +10,17 @@ import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { EditorState } from "lexical";
 import { useEffect, useMemo, useState } from "react";
-import TextActionButtons from "../pages/text-action-buttons";
+import TextActionButtons from "../pages/text-editor-toolbar";
+import TextEditorToolbar from "../pages/text-editor-toolbar";
+import { styleText } from "util";
 
 const theme = {
-    
+    text: {
+        bold: "font-black",
+        italic: "italic",
+        underline: "underline",
+        strikethrough: "text-strikethrough",
+    }
 }
 
 
@@ -40,27 +47,30 @@ interface EditorProps {
 function Editor(props: EditorProps) {
     const initialConfig = {
         namespace: "Editor",
+        theme: theme,
         onError,
     }
 
     const placeholder = useMemo(() => {
         return (
             <div className="absolute top-0 left-8 text-neutral-800 opacity-50">
-                <p>Once upon a time, ...</p>
+                {/* <p>Once upon a time, ...</p> */}
             </div>
         )
     }, [])
 
 
     return (
-        <div className="relative">
+        <div className="relative flex-1 w-full flex flex-col">
             <LexicalComposer initialConfig={initialConfig}>
+                <TextEditorToolbar />
                 <RichTextPlugin
                     contentEditable={
                         <ContentEditable
+                            spellCheck={true}
                             aria-placeholder="abc..."
                             placeholder={placeholder}
-                            className="px-8 rounded-sm h-full outline-0"
+                            className=" rounded-t-2xl flex-1 outline-0 w-full bg-white shadow-equal-xl p-16"
                         />
                     }
                     ErrorBoundary={LexicalErrorBoundary}
@@ -75,7 +85,3 @@ function Editor(props: EditorProps) {
 }
 
 export default Editor;
-
-function $createParapgraphNode() {
-    throw new Error("Function not implemented.");
-}

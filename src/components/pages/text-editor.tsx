@@ -8,7 +8,7 @@ import { createPage } from "@/db/queries/insert";
 import { updatePageContent } from "@/db/queries/update";
 import { STATE_UPDATE_DELAY } from "@/utilities/constants/timeout";
 import { useDebouncedCallback } from "use-debounce";
-import TextActionButtons from "./text-action-buttons";
+import TextActionButtons from "./text-editor-toolbar";
 import { EMPTY_EDITOR_STATE } from "@/utilities/constants/editor-state";
 
 interface TextEditorProps {
@@ -59,17 +59,18 @@ function TextEditor(props: TextEditorProps) {
             }
     }, [editorState])
 
-    if(editorState !== "")return (
-        <div className="flex items-center justify-center bg-neutral-50">
-            <div className="max-w-300 w-2/3 h-dvh bg-white shadow-xl p-4">
-                <TextActionButtons />
+    if(editorState !== "")return (<>
+        <div className="flex flex-col items-center justify-center bg-linear-to-br from-neutral-50 to-neutral-100">
+            <div className="max-w-[900px] w-full md:mx-3.5 md:w-3/4 xl:w-2/3  min-h-dvh flex">
                 <Editor 
                     initialEditorState={editorState}
                     onChange={onChange}
                 />
-            </div>
+            </div>  
+
         </div>
-    )
+
+    </>)
 };
 
 export default TextEditor;

@@ -1,1 +1,1 @@
-export const STATE_UPDATE_DELAY = 500;
+export const STATE_UPDATE_DELAY = 300;
