@@ -1,4 +1,4 @@
-import Editor from "@/components/lexical/editor";
+import Editor from "@/components/pages/editor";
 
 function HomePage() {
     return (

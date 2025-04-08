@@ -1,29 +1,31 @@
 import TextStyleIcon from "@/utilities/svg/text-style-icon";
-import { FORMAT_TEXT_COMMAND, LexicalEditor } from "lexical";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { FORMAT_TEXT_COMMAND } from "lexical";
 
 interface ToolbarTextStyleProps {
-    editor: LexicalEditor;
     toolbarButtonStyle: string;
 }
 function ToolbarTextStyle(props: ToolbarTextStyleProps) {
+    const [editor] = useLexicalComposerContext();
+
     return (<>
         {/* BOLD */}
         <button className={`${props.toolbarButtonStyle} font-black`} onClick ={() => {
-            props.editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold");
+            editor.dispatchCommand(FORMAT_TEXT_COMMAND, "bold");
         }}>
         <TextStyleIcon.bold />
         </button>
 
         {/* ITALIC */}
         <button className={`${props.toolbarButtonStyle} italic`} onClick={() => {
-            props.editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic");
+            editor.dispatchCommand(FORMAT_TEXT_COMMAND, "italic");
         }}>
             <TextStyleIcon.italic />
         </button>
 
         {/* UNDERLINE */}
         <button className={`${props.toolbarButtonStyle} underline`} onClick={() => {
-            props.editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline");
+            editor.dispatchCommand(FORMAT_TEXT_COMMAND, "underline");
         }}>
             <TextStyleIcon.underline />
         </button>

@@ -6,7 +6,7 @@ import ToolbarTextPreset from "./(text-editor-toolbar)/toolbar-text-preset";
 
 function TextEditorToolbar() {
     const [editor] = useLexicalComposerContext();
-    const TOOLBAR_BUTTON_STYLE = "h-10 w-10 flex items-center justify-center rounded-full hover:btn hover:btn-circle";
+    const TOOLBAR_BUTTON_STYLE = "h-10 w-10 flex items-center justify-center btn-circle btn btn-neutral";
 
     return (
         <div className="flex items-center justify-center p-4">

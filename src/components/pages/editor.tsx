@@ -10,9 +10,10 @@ import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { EditorState } from "lexical";
 import { useEffect, useMemo, useState } from "react";
-import TextActionButtons from "../pages/text-editor-toolbar";
-import TextEditorToolbar from "../pages/text-editor-toolbar";
+import TextActionButtons from "./text-editor-toolbar";
+import TextEditorToolbar from "./text-editor-toolbar";
 import { styleText } from "util";
+import FontSizePlugin from "@/lexical/plugins/font-size-plugin";
 
 const theme = {
     text: {
@@ -79,6 +80,7 @@ function Editor(props: EditorProps) {
                 <AutoFocusPlugin />
                 <HistoryPlugin />
                 <OnChangePlugin onChange={props.onChange} />
+                <FontSizePlugin />
             </LexicalComposer>
         </div>
     )
