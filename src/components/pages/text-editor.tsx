@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Editor from "./editor";
 import { EditorState } from "lexical";

@@ -1,4 +1,4 @@
-import { TextPreset } from "../../types/text-editor/text-preset";
+import { TextPreset } from "../../../types/text-editor/text-preset";
 
 export const title: TextPreset = {
     name: "Title",

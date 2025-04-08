@@ -13,9 +13,9 @@ function TextEditorToolbar() {
             <div className="flex items-center justify-center gap-2 p-2 shadow-md inset-shadow-xs rounded-full bg-white">
 
                 <ToolbarTextPreset />
-                <ToolbarTextStyle editor={editor} toolbarButtonStyle={TOOLBAR_BUTTON_STYLE} />
+                <ToolbarTextStyle toolbarButtonStyle={TOOLBAR_BUTTON_STYLE} />
                 <ToolbarSpacer />
-                <ToolbarTextAlign editor={editor} toolbarButtonStyle={TOOLBAR_BUTTON_STYLE} />
+                <ToolbarTextAlign toolbarButtonStyle={TOOLBAR_BUTTON_STYLE} />
                 
             </div>
         </div>

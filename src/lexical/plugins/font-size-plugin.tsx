@@ -15,12 +15,15 @@ function FontSizePlugin() : null {
                 const selection = $getSelection();
                 
                 if($isRangeSelection(selection)) {
+                    // change previous text style
                     selection.getNodes().forEach(node => {
                         if($isTextNode(node)) 
                             (node as TextNode).setStyle(`font-size: ${fontSize}`);
                     });
-                };
 
+                    // change new character style
+                    selection.setStyle(`font-size: ${fontSize}`);
+                };
                 return true;
             },
             COMMAND_PRIORITY_EDITOR
