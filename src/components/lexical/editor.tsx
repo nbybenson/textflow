@@ -9,10 +9,8 @@ import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
 import { OnChangePlugin } from "@lexical/react/LexicalOnChangePlugin";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { EditorState } from "lexical";
-import { useEffect, useMemo, useState } from "react";
-import TextActionButtons from "../pages/text-editor-toolbar";
+import { useEffect, useMemo } from "react";
 import TextEditorToolbar from "../pages/text-editor-toolbar";
-import { styleText } from "util";
 
 const theme = {
     text: {
@@ -34,7 +32,7 @@ function EditorContentLoaderPlugin({text} : {text : string}) {
 }
 
 
-function onError(error: any) {
+function onError(error: Error) {
     console.error(error);
 }
 

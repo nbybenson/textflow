@@ -1,7 +1,7 @@
 "use client";
 import TextAlignIcon from "@/utilities/svg/text-align-icon";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { FORMAT_ELEMENT_COMMAND, LexicalEditor } from "lexical";
+import { FORMAT_ELEMENT_COMMAND } from "lexical";
 
 interface ToolbarTextAlignProps {
     toolbarButtonStyle: string;

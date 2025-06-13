@@ -7,7 +7,6 @@ import { SET_FONT_SIZE_COMMAND } from "@/lexical/commands/font-size-command";
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { useSwitchTextStyle } from "@/lexical/hooks/use-remove-text-style";
 import { TextPresets } from "@/utilities/constants/text-editor/text-presets";
-import { useDebouncedCallback } from "use-debounce";
 
 function ToolbarTextPreset() {
     const [editor] = useLexicalComposerContext();

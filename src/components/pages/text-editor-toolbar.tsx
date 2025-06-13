@@ -1,11 +1,11 @@
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+// import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import ToolbarTextAlign from "./(text-editor-toolbar)/toolbar-text-align";
 import ToolbarSpacer from "./(text-editor-toolbar)/toolbar-spacer";
 import ToolbarTextStyle from "./(text-editor-toolbar)/toolbar-text-style";
 import ToolbarTextPreset from "./(text-editor-toolbar)/toolbar-text-preset";
 
 function TextEditorToolbar() {
-    const [editor] = useLexicalComposerContext();
+    // const [editor] = useLexicalComposerContext();
     const TOOLBAR_BUTTON_STYLE = "h-10 w-10 flex items-center justify-center btn-circle btn btn-neutral";
 
     return (
